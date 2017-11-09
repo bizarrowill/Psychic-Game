@@ -10,7 +10,29 @@ var guessesSoFar = [];
 var userGuess = null;
 // computer pick a letter and store it in letterToBeGuessed
 var letterToBeGuessed = alphabetLetters[Math.floor(Math.random() * alphabetLetters.length)];
-console.log("Wins: " + wins + " Losses: " + losses + " GuessesLeft: " + guessesLeft + " Guesses so far: " + guessesSoFar + " Computer picked: " + letterToBeGuessed);
+//console.log("Wins: " + wins + " Losses: " + losses + " GuessesLeft: " + guessesLeft + " Guesses so far: " + guessesSoFar + " Computer picked: " + letterToBeGuessed);
+
+var updateGuessesLeft = function (){
+	document.querySelector("#guessesLeft").innerHTML = guessesLeft;
+};
+
+var updateLettersToBeGuessed = function (){
+};
+
+var updateguessesSoFar = function (){
+	document.querySelector("#guessesSoFar").innerHTML = guessesSoFar.join(" ");
+};
+
+var reset = function (){
+		guessesLeft = 9;
+		guessesSoFar = [];
+		letterToBeGuessed = alphabetLetters[Math.floor(Math.random() * alphabetLetters.length)];
+		updateGuessesLeft();
+		updateLettersToBeGuessed();
+		updateguessesSoFar();
+
+};
+
 
 // game events
 document.onkeyup = function(event) {
@@ -32,11 +54,11 @@ document.onkeyup = function(event) {
 	// also have the computer make a new random pick
 	if (letterToBeGuessed == userGuess) {
 		wins++;
+		document.querySelector("#wins").innerHTML = wins;
 		console.log("You won!");
-		guessesLeft = 9;
-		guessesSoFar = [];
-		letterToBeGuessed = alphabetLetters[Math.floor(Math.random() * alphabetLetters.length)];
-		console.log("Wins: " + wins + " Losses: " + losses + " GuessesLeft: " + guessesLeft + " Guesses so far: " + guessesSoFar + " Computer picked: " + letterToBeGuessed);
+		reset();
+
+		//console.log("Wins: " + wins + " Losses: " + losses + " GuessesLeft: " + guessesLeft + " Guesses so far: " + guessesSoFar + " Computer picked: " + letterToBeGuessed);
 	}
 
 	// if guessesLeft gets to 0 then record it as a loss
@@ -44,20 +66,28 @@ document.onkeyup = function(event) {
 	// also have the computer make a new random pick
 	if (guessesLeft == 0) {
 		losses++;
+		document.querySelector("#losses").innerHTML = losses;
 		console.log("You lost!");
-		guessesLeft = 9;
-		guessesSoFar = [];
-		letterToBeGuessed = alphabetLetters[Math.floor(Math.random() * alphabetLetters.length)];
-		console.log("Wins: " + wins + " Losses: " + losses + " GuessesLeft: " + guessesLeft + " Guesses so far: " + guessesSoFar + " Computer picked: " + letterToBeGuessed);
+		reset();
+		//console.log("Wins: " + wins + " Losses: " + losses + " GuessesLeft: " + guessesLeft + " Guesses so far: " + guessesSoFar + " Computer picked: " + letterToBeGuessed);
 	}
 
 	// Displaying progress to HTML
-	var html = "<p><h1>The Psychic Game</h1></p>" + "<p><h4>Guess what letter I'm thinking of</h4></p>" + "<p><h4>Wins: " + wins + "</h4></p>" + "<p><h4>Losses: " + losses + "</h4></p>" + "<p><h4>Guesses Left: " + guessesLeft + "</h4></p>" + "<p><h4>Your guesses so far: " + guessesSoFar + "</h4></p>";
-	
-	
+	//var html = "<p><h1>The Psychic Game</h1></p>" + "<p><h4>Guess what letter I'm thinking of</h4></p>" + "<p><h4>Wins: " + wins + "</h4></p>" + "<p><h4>Losses: " + losses + "</h4></p>" + "<p><h4>Guesses Left: " + guessesLeft + "</h4></p>" + "<p><h4>Your guesses so far: " + guessesSoFar + "</h4></p>";
+	//updateletterToBeGuessed() = letters[Math.floor(Math.random() * letters.length)];
+	//updateLetterToGuess();
+    updateGuessesLeft();
+    updateguessesSoFar();
 	//testing below
-	
+
+	//document.querySelector("#userGuess").innerHTML = userGuess;
+	//document.querySelector("#wins").innerHTML = wins;
+	//document.querySelector("#losses").innerHTML = losses;
+	//document.querySelector("#guessesLeft").innerHTML = guessesLeft;
+	//document.querySelector("#guessesSoFar").innerHTML = guessesSoFar;
+	console.log("Wins: " + wins + " Losses: " + losses + " GuessesLeft: " + guessesLeft + " Guesses so far: " + guessesSoFar + " Computer picked: " + letterToBeGuessed);
+
 	// place html into the game ID
-	document.querySelector("#game").innerHTML = html;
+	//document.querySelector("#game").innerHTML = html;
 
 }
